@@ -1,0 +1,20 @@
+.container-fluid{
+    background-image: url("../../../../../../assets/img/ventas.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.fa{
+    position: absolute;
+    margin-top: -9%;
+    margin-left: 74%;
+    border: none;
+    background-color: transparent;
+}
+
+.card{
+    min-height: 75%;
+}

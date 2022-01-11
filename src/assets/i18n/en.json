@@ -1,0 +1,44 @@
+{
+    "login": {
+        "usuario": "User",
+        "contraseña": "Password",
+        "aceptar": "To accept",
+        "crearNuevoUsuario":"Create New User"
+    },
+    "global":{
+        "lenguaje":"Language",
+        "español":"Spanish (es)",
+        "ingles":"English (en)",
+        "seleccionar":"To select"
+    },
+    "etiqueta":{
+        "F":"Female",
+        "M":"Male"
+    },
+    "crearUsuario":{
+        "datosPersonales":"Personal information",
+        "primerNombre":"First Name",
+        "segundoNombre":"Second name",
+        "primerApellido":"Surname",
+        "segundoApellido":"Second surname",
+        "tipoIdentificacion":"Identification Type",
+        "numeroIdentificacion":"Identification number",
+        "genero":"Gender",
+        "crearUsuario":"Create User",
+        "confirmarContrasena":"Confirm Password",
+        "contrasena":"Password",
+        "usuario":"User",
+        "datosUsuario":"User data",
+        "fechaNacimiento":"Birthdate",
+        "primerNombreValidacion":"You must enter the first name",
+        "primerApellidoValidacion":"You must enter the first surname",
+        "tipoIdentificacionValidacion":"You must select the type of identification",
+        "generoValidacion":"You must select the gender",
+        "usuarioValidacion":"You must enter the user",
+        "contrasenaValidacion":"Passwords do not match"
+    },
+    "home":{
+        "perfilUsuario":"User Profile",
+        "cerrarSesion":"Sign off"
+      }
+  }

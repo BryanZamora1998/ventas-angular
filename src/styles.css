@@ -1,0 +1,21 @@
+.container-fluid{
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+  width: 100%;
+}
+
+::placeholder {
+  font-size: 15px;
+}
+
+html,body {
+  height: 100%;
+  width: 100%;
+}
+
+
+.text-transform-none{
+  text-transform: none;
+}
+

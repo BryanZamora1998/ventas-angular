@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+
+  <img id="img-home" src="../../../assets/img/ventas.svg" width="30" height="30">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+    <ul class="navbar-nav mr-auto w-100 position-relative">
+      <li class="nav-item active flex-grow-1">
+        <a class="nav-link" [routerLink]="['./modulos']">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{data.usuario}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="card">
+            <div class="d-flex flex-row justify-content-center">
+              <img id="img-home" src="../../../assets/img/user_icon-icons.com_57997.svg" width="40" height="50">
+              <div class="d-flex flex-column">
+                  <p>{{data.primerNombre |  titlecase}}</p>
+                  <p>{{data.primerApellido |  titlecase}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/login']">Cerrar Sesión</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+ 
+

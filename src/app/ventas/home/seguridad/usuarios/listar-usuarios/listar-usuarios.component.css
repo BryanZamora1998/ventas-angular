@@ -1,0 +1,26 @@
+.container-fluid{
+    position: relative;
+    padding-top: 10%;
+}
+
+.img-size{
+    width:10px;
+    text-align: center;
+}
+img{
+    cursor: pointer;
+}
+
+.inline{
+    display: inline;
+}
+
+.roles{
+    margin-bottom: 30px; 
+    height: 30px; 
+}
+
+.actualizar-usu > .modal-dialog {
+    max-width: 1000px;
+    margin: 1.75rem auto;
+}

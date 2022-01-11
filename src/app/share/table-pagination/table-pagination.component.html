@@ -1,0 +1,17 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <div *ngFor="let item of displayedColumns; index as i;">
+        <!--Column -->
+        <ng-container matColumnDef="{{displayedColumns[i]}}">
+          <th mat-header-cell *matHeaderCellDef>{{displayedColumns[i]}}</th>
+          <td mat-cell *matCellDef="let element">{{element[displayedColumns[i]]}}</td>
+        </ng-container>
+      </div>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="numeroDatos" showFirstLastButtons></mat-paginator>
+  </div>

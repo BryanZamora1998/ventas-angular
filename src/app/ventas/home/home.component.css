@@ -1,0 +1,19 @@
+.navbar{
+  z-index: 10;
+  top: 0;
+}
+
+#img-home{
+  margin-right: 2%;
+}
+
+.dropdown-menu.show {
+  left: -70%;
+}
+
+p{
+  color: black;
+}
+.card {
+ border: none !important;
+}

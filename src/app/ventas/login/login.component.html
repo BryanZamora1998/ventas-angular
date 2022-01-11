@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row h-100 justify-content-center align-items-center">   
+        <div class="card w-25">
+            <form (ngSubmit)="postAutenticacion()" >
+                <img class="card-img-top" width="200" height="200" src="./../../../assets/img/user.svg" alt="Card image cap">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>{{'login.usuario' | translate }}</label>
+                        <input type="text" class="form-control" placeholder="{{'login.usuario' | translate }}" name="txt_usuario"  #txt_usuario="ngModel" [(ngModel)]="usuario" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'login.contraseña' | translate }}</label>
+                        <input autocomplete="off" class="form-control" placeholder="{{'login.contraseña' | translate }}" [type]="typeInputF" type="password" name="txt_contrasena" #txt_contrasena="ngModel" [(ngModel)]="contrasena" required/>
+                        <label *ngIf="showPF" (click)="mostrarPassword()" type="button" class="button"><i class="fa fa-eye showPass" aria-hidden="true"></i></label>
+                        <label *ngIf="!showPF" (click)="mostrarPassword()" type="button" class="button"><i class="fa fa-eye-slash showPass" aria-hidden="true"></i></label>
+                    </div>
+                    <div class="form-group ">
+                        <button matTooltip="Info about the action" type="submit" class="btn btn-info w-100">{{'login.aceptar' | translate }}</button>
+                    </div>
+                    <a [routerLink]="['../olvido-contrasena']">Olvido la contraseña</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

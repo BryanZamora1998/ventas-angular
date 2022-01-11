@@ -1,0 +1,16 @@
+.active{
+    color: white !important;
+}
+
+.navbar{
+    background-color: #007bff !important;
+    color: #000000 !important;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    margin-top:3.2%;
+}
+
+.nav-link:hover{
+    color:  white !important;
+}

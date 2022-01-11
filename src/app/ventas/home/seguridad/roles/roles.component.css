@@ -1,0 +1,59 @@
+.container-fluid{
+  padding-top: 150px;
+}
+.inline{
+  display: inline;
+}
+
+#guardar{
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../../../../assets/img/diskette.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px 30px;
+}
+.img-clean{
+  margin-top: 30px;
+}
+
+.top-2{
+  margin-top: 2%;
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+  tbody tr:hover{
+    background-color: #f0f0f0 !important;
+    color: white !important;
+    cursor: pointer;
+  }
+
+  .example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+  .posionIco{
+    width: 12px;
+    margin-right: 10px;
+  }  
+
+  .checkOculto{
+    /* display: none; */
+  }

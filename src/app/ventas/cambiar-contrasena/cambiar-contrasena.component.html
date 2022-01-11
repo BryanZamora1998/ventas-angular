@@ -1,0 +1,30 @@
+
+<div class="container-fluid">
+    <div class="row h-100 justify-content-center align-items-center">  
+            <div class="card col-3 pt-5">
+                <h1 class="card-title text-center">Cambiar Contraseña</h1>
+                <img class="card-img-top" width="100" height="100" src="./../../../assets/img/user.svg" alt="Card image cap">
+                <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label>Contraseña Nueva</label>
+                        <input autocomplete="off" (change)="compararContrasena()" class="form-control" placeholder="Contraseña Nueva" [type]="typeInputF1" type="password" name="txt_contrasena1" #txt_contrasena1="ngModel" [(ngModel)]="contrasena1" required/>
+                        <label *ngIf="showPF1" (click)="mostrarPassword1()" type="button" class="button"><i class="fa fa-eye showPass" aria-hidden="true"></i></label>
+                        <label *ngIf="!showPF1" (click)="mostrarPassword1()" type="button" class="button"><i class="fa fa-eye-slash showPass" aria-hidden="true"></i></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmar Nueva Contraseña</label>
+                        <input autocomplete="off" (change)="compararContrasena()" class="form-control" placeholder="Confirmar Nueva Contraseña" [type]="typeInputF2" type="password" name="txt_contrasena2" #txt_contrasena2="ngModel" [(ngModel)]="contrasena2" required/>
+                        <label *ngIf="showPF2" (click)="mostrarPassword2()" type="button" class="button"><i class="fa fa-eye showPass" aria-hidden="true"></i></label>
+                        <label *ngIf="!showPF2" (click)="mostrarPassword2()" type="button" class="button"><i class="fa fa-eye-slash showPass" aria-hidden="true"></i></label>
+                    </div>
+                    <div class="form-group ">
+                        <button (click)="cambiarContrasena()" id="aceptar" matTooltip="Info about the action" type="submit" class="btn btn-info w-100" disabled>Guardar Contraseña</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+    </div>
+</div>
+  
+  

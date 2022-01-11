@@ -1,0 +1,177 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h1 class="text-center">Roles</h1>
+            <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup" label="Lista de roles">
+                <h1 class="text-center top-2">Lista de roles</h1>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                      <div *ngIf="dataRol==null; then  skeleton else table"></div>
+                      <ng-template #skeleton>
+                          <div class="item">
+                            <!-- Disables the animation -->
+                            <ngx-skeleton-loader animation="false"></ngx-skeleton-loader>
+                            <!-- Uses `progress` as animation -->
+                            <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+                            <!-- Disables the animation -->
+                            <ngx-skeleton-loader animation="false"></ngx-skeleton-loader>
+                            <!-- Uses `progress` as animation -->
+                            <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+                              <!-- Disables the animation -->
+                            <ngx-skeleton-loader animation="false"></ngx-skeleton-loader>
+                            <!-- Uses `progress` as animation -->
+                            <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader></ngx-skeleton-loader>
+                            <!-- Uses `pulse` as animation -->
+                            <ngx-skeleton-loader animation="pulse"></ngx-skeleton-loader>
+                          </div>
+                      </ng-template>
+                      <ng-template #table>
+                        <table class="table text-center top-2">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Nombre Rol</th>
+                                <th>Actualizar Rol</th>
+                                <th>Eliminar Rol</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <div *ngIf="dataRol.length>0; then result else noResult"></div>
+                              <ng-template #result> 
+                                  <tr id="tr-{{i+1}}" (click)="seleccionarTr(i+1,item.secuenciaRol)" *ngFor="let item of dataRol;index as i" (click)=" consultarUrlPorRol(item.secuenciaRol)">
+                                    <td>{{i+1}}</td>
+                                    <td>{{item.nombre | titlecase}}</td>
+                                    <td  matTooltip="Actualizar Rol">
+                                      <img  (click)="getRolId(item.secuenciaRol)" src="../../../../../../assets/img/update-profile-user.svg" width="25" height="25"
+                                      data-toggle="modal" data-target="#exampleModalScrollable1">
+                                    </td>
+                                    <td matTooltip="Eliminar Rol"><img (click)="eliminarRol(item.secuenciaRol)" src="../../../../../../assets/img/eliminar.svg" width="25" height="25"/></td>
+                                  </tr>
+                              </ng-template>
+                              <ng-template #noResult> 
+                                <tr><td COLSPAN="4"><p>No existe resultados</p></td></tr>
+                              </ng-template>
+                            </tbody>
+                          </table>
+                          <app-paginador *ngIf="mostrarPag" [totalDatos]="totalRows" [datosPorpagina]="perPage" (paginaSeleccionada)="getpaginacion($event)"></app-paginador>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="justify-content-between top-2">
+                  <h3 class="inline"><b>Privilegios</b></h3>
+                  <button matTooltip="Guardar" type="button" id="guardar" (click)="guardar()" class="btn btn-primary inline float-right"></button>
+                </div>
+                    <div *ngIf="aparecerUrl; then thenBlock"></div>
+                    <ng-template #thenBlock><ul class="top-2">
+                      <ng-template #recursiveList let-data>
+                        <li *ngFor="let item of data ; index as i">
+                          <div class="form-inline">
+                          
+                            <div class="posionIco">
+                              <div *ngIf="item.rutas.length > 0">
+                                  <img (click)="isCheckImg(item.nombre,i+1)" 
+                                  id="img-{{item.nombre}}-{{i+1}}" 
+                                  width="10" height="10" 
+                                  src="../../../assets/img/signo-menos.svg">
+                              </div>    
+                            </div>
+                    
+                            <input (change)="check(item.secuenciaRuta)" class="form-check-input {{item.id}}" [checked]="item.esSelect" type="checkbox" id="d-{{item.id}}">
+                            <label class="form-check-label" for="d-{{item.nombre}}-{{item.id}}">
+                              {{item.secuenciaRuta}}:{{item.description}}
+                            </label>
+                    
+                          </div>
+                    
+                          <ul *ngIf="item.rutas.length > 0" class="checkOculto" id="check-{{item.nombre}}-{{i+1}}">
+                            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.rutas}"></ng-container>
+                          </ul>
+                          
+                        </li>
+                      </ng-template>
+                      
+                      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: data}"></ng-container>
+                    </ul>
+                  </ng-template>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" label="Crear un nuevo rol">
+              <div class="row">
+                  <div class="col-4">
+                    <form >
+                      <div class="form-group">
+                        <label for="formGroupExampleInput">Nombre de rol</label>
+                        <input  (change)="validaSiEsVacio('C')" type="text" 
+                        class="form-control" id="formGroupExampleInput" placeholder="Nombre de rol"
+                        name="nombreRol" #nombreRol="ngModel" [(ngModel)]="nombreC">
+                      </div>
+                      <div class="form-group">
+                        <button id="aceptarC"
+                        (click)="postRol()" type="button" class="btn btn-primary"
+                        disabled>Guardar</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-4">
+                      <div class="form-group">
+                          <label for="formGroupExampleInput">Módulo</label>
+                          <select class="custom-select" name="secuenciaModulo"  #secuenciaModulo="ngModel"  [(ngModel)]="secuenciaModul" ngControl="t.secuenciaModulo">
+                              <option selected >Seleccionar</option>
+                              <option [value]="t.secuenciaModulo" *ngFor="let t of modulos" >{{t.nombre | titlecase}}</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+            </mat-step>
+         </mat-horizontal-stepper>            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="exampleModalScrollable1" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Actualizar Rol</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <form >
+              <div class="form-group">
+                <label for="formGroup">Nombre de rol</label>
+                <input  (change)="validaSiEsVacio('A')" type="text" 
+                class="form-control" id="formGroup" placeholder="Nombre de rol"
+                name="nombreRol" #nombreRol="ngModel" [(ngModel)]="dataRolId.nombre">
+              </div>
+              <div class="form-group">
+                <button id="aceptarA"
+                (click)="putRol()" type="button" class="btn btn-primary"
+                disabled>Guardar</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-4">
+              <div class="form-group">
+                  <label for="formGroupExampleInput">Módulo</label>
+                  <select class="custom-select" name="secuenciaModulo"  #secuenciaModulo="ngModel"  [(ngModel)]="dataRolId.secuenciaModulo" ngControl="t.secuenciaModulo">
+                      <option selected >Seleccionar</option>
+                      <option [value]="t.secuenciaModulo" [selected] ="t.secuenciaModulo==dataRolId.secuenciaModulo" *ngFor="let t of modulos" >{{t.nombre | titlecase}}</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

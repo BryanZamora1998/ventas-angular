@@ -1,0 +1,175 @@
+<div class="container-fluid">
+  <h1 class="text-center" >Lista de Usuarios</h1>
+  <div class="d-flex flex-row justify-content-center">
+      <div class="p-2">
+        <form>
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select class="custom-select" id="estados" (change)="estadoUsuario()" name="estados"  #estados="ngModel"  [(ngModel)]="estado" >
+              <option selected="" value="TODOS" >Todos</option>
+              <option value="ACTIVO">Activo</option>
+              <option value="INACTIVO">Inactivo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="p-2">
+        <form>
+          <div class="form-group">
+            <label for="cedula">Cédula o Usuario</label>
+            <input (change)="validarVacio($event.target.value)" id="cedulaCodigoUsuario" type="text" class="form-control" id="cedula"  name="cedulaCodigoUsuario"  #cedulaCodigoUsuario="ngModel" [(ngModel)]="valor" placeholder="Cédula o Usuario">
+          </div>
+        </form>
+    </div>
+    <div class="p-2 align-self-center" >
+      <form>
+        <button type="button" class="btn btn-primary" (click)="listarUsuario()">Buscar</button>
+      </form>
+    </div>
+    <div class="p-2 align-self-center" >
+      <a matTooltip="Crear usuario" [routerLink]="['../crear-usuario']"><img width="40" height="40" src="../../../../../../assets/img/follow.svg"></a>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-10 mt-5">
+      <div *ngIf="data==null; then  skeleton else table"></div>
+      <ng-template #skeleton>
+          <div class="item">
+            <!-- Disables the animation -->
+            <ngx-skeleton-loader animation="false"></ngx-skeleton-loader>
+            <!-- Uses `progress` as animation -->
+            <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+             <!-- Disables the animation -->
+             <ngx-skeleton-loader animation="false"></ngx-skeleton-loader>
+             <!-- Uses `progress` as animation -->
+            <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+              <!-- Disables the animation -->
+            <ngx-skeleton-loader animation="false"></ngx-skeleton-loader>
+            <!-- Uses `progress` as animation -->
+            <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+            <ngx-skeleton-loader></ngx-skeleton-loader>
+            <!-- Uses `pulse` as animation -->
+            <ngx-skeleton-loader animation="pulse"></ngx-skeleton-loader>
+          </div>
+        </ng-template>
+      <ng-template #table>
+      
+              <table class="table text-center">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nro Identificacion</th>
+                      <th>Nombres Completos</th>
+                      <th>Email</th>
+                      <th>Usuario</th>
+                      <th>Estado</th>
+                      <th>Roles</th>
+                      <th>Actualizar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                 
+                  <tbody>
+                    <div *ngIf="data.length>0; then result else noResult"></div>
+                    <ng-template #result> 
+                        <tr *ngFor="let d of data; index as i">
+                          <th scope="row">{{i+1}}</th>
+                          <td >{{d.numeroIdentificacion}}</td>
+                          <td >{{d.nombresCompletos | titlecase}}</td>
+                          <td >{{d.email}}</td>
+                          <td >{{d.usuario}}</td>
+                          <td  matTooltip="Activar o inactivar usuario" ><div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" id="customSwitch-{{i}}" [checked]="d.estado" (change)="activarOInactivarUsuario(d.secuenciaUsuario)">
+                            <label class="form-check-label" for="customSwitch-{{i}}"></label>
+                          </div>
+                        </td>
+                        <td matTooltip="Agregar rol">
+
+                          <!-- Button trigger modal -->
+                          <!-- <button type="button"  class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#exampleModalScrollable-'+(i+1)"> -->
+                            <img src="../../../../../../assets/img/plus.svg" width="25" height="25"
+                            data-toggle="modal" [attr.data-target]="'#exampleModalScrollable-'+(i+1)">
+                          <!-- </button> -->
+
+                        <!-- Modal -->
+                        <div class="modal" id="exampleModalScrollable-{{i+1}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5>Roles</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                              
+                                <div class="roles">
+                                  <img class="w-25 inline float-right"src="../../../../../../assets/img/recargar.svg" width="25" height="25"
+                                  data-toggle="modal" (click)="getConsultaRolPorUsuarioTodos(d.secuenciaUsuario)">
+                                </div>
+
+                                <div class="form-check">
+                                  <div class="form-check form-check-inline" *ngFor="let a of d.roles;index as j">
+                                      <input class="form-check-input checkboxRol" 
+                                      [checked]="a.esSelect==true" type="checkbox" 
+                                      id="inlineCheckbox-{{j+1}}" value="{{a.secuenciaRol}}">
+                                      <label class="form-check-label" for="inlineCheckbox-{{i+1}}">{{a.nombre}}</label>
+                                  </div>
+                                  <hr>
+                                </div>
+                                <!-- <app-chips (dataEliminado)="dataEliminado($event)" [cabecera]="'Roles asignados'" [data]="d.roles"></app-chips> -->
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button (click)="guardar(d.secuenciaUsuario)"  type="button" class="btn btn-primary">Guardar Cambios</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </td>
+                        <td  matTooltip="Actualizar usuario">
+
+                          <!-- Button trigger modal -->
+                          <!-- <button type="button"  class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#exampleModalScrollable-'+(i+1)"> -->
+                            <img (click)="getUsuarioXId(d.secuenciaUsuario)" src="../../../../../../assets/img/update-profile-user.svg" width="25" height="25"
+                            data-toggle="modal" data-target="#actualizarUsuario">
+                          <!-- </button> -->
+
+                        </td>
+                        <td matTooltip="Eliminar usuario"><img src="../../../../../../assets/img/eliminar.svg" width="25" height="25"
+                          data-toggle="modal" (click)="deleteEliminarUsuario(d.secuenciaUsuario)">
+                        </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #noResult> 
+                      <tr><td COLSPAN="8"><p>No existe resultados</p></td></tr>
+                    </ng-template>
+                    </tbody>
+                </table>
+          <app-paginador *ngIf="mostrarPag" [totalDatos]="totalRows" [datosPorpagina]="perPage" (paginaSeleccionada)="getpaginacion($event)"></app-paginador>
+        </ng-template>
+        <br><br>
+    </div>
+</div>
+
+
+ <!-- Modal -->
+ <div class="modal actualizar-usu" id="actualizarUsuario" tabindex="-1" role="dialog" aria-labelledby="actualizarUsuario" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Actualizar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-usuarios-ca (valueResponse)="actualizarUsuario($event)" [data]="dataUsuarioId"></app-usuarios-ca>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

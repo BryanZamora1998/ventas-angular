@@ -1,0 +1,44 @@
+{
+  "login": {
+      "usuario": "Usuario",
+      "contraseña": "Contraseña",
+      "aceptar": "Aceptar",
+      "crearNuevoUsuario":"Crear Nuevo Usuario"
+  },
+  "global":{
+    "lenguaje":"Lenguaje",
+    "español":"Español (es)",
+    "ingles":"Inglés (en)",
+    "seleccionar":"seleccionar"
+  },
+  "etiqueta":{
+      "F":"Femenino",
+      "M":"Masculino"
+  },
+  "crearUsuario":{
+      "datosPersonales":"Datos Personales",
+      "primerNombre":"Primer Nombre",
+      "segundoNombre":"Segundo Nombre",
+      "primerApellido":"Primer Apellido",
+      "segundoApellido":"Segundo Apellido",
+      "tipoIdentificacion":"Tipo Identificación",
+      "numeroIdentificacion":"Número de Identificación",
+      "genero":"Género",
+      "crearUsuario":"Crear Usuario",
+      "confirmarContrasena":"Confirmar Contraseña",
+      "contrasena":"Contraseña",
+      "usuario":"Usuario",
+      "datosUsuario":"Datos del Usuario",
+      "fechaNacimiento":"Fecha de Nacimiento" ,
+      "primerNombreValidacion":"Debe ingresar el primer nombre" ,
+      "primerApellidoValidacion":"Debe ingresar el primer apellido",
+      "tipoIdentificacionValidacion":"Debe seleccionar el tipo de identificación",
+      "generoValidacion":"Debes seleccionar el género",
+      "usuarioValidacion":"Debes ingresar el usuario",
+      "contrasenaValidacion":"Las contraseñas no coinciden"
+  },
+  "home":{
+    "perfilUsuario":"Perfil del Usuario",
+    "cerrarSesion":"Cerrar Sesión"
+  }
+}

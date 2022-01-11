@@ -1,0 +1,41 @@
+.modulo{
+  margin-top: 100px;
+}
+
+.card-body {
+  padding: 0px;
+}
+
+.card{
+  color:#dfdfdf;
+  border: 1px solid #dfdfdf;
+}
+
+.card-title{
+  border-bottom: inherit;
+}
+
+.card-title-hover{
+  border: inherit;
+}
+
+.size-15{
+  min-width: 15%;
+}
+
+.card:hover{
+  border: 1px solid blue;
+  color: blue;
+} 
+
+
+  /deep/ .cdk-overlay-pane {
+    position: absolute;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    max-width: 100%;
+    width: 200px !important;
+    max-height: 100%;
+}

@@ -1,0 +1,171 @@
+<div class="container-fluid">
+    <div class="row justify-content-center mt-2 mb-2">
+        <div class="card col-9">
+            <h2 class="card-title pl-4 pt-4">Datos Personales</h2>
+            <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-sm-3 col-6 w-100 align-self-end">
+                        <div class="form-group text-center pt-4">
+                            <img  class="border" width="90" height="90" src="assets/img/user_icon-icons.com_57997.svg" for="foto"/>
+                            <label for="foto">Foto</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6 align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Tipo de Identificación</label>
+                            <select class="custom-select" name="secuenciaTipoIdentificacion"  #secuenciaTipoIdentificacion="ngModel"  [(ngModel)]="data.secuenciaTipoIdentificacion" ngControl="t.secuenciaTipoIdentificacion">
+                                <option selected>Seleccionar</option>
+                                <option [value]="t.secuenciaTipoIdentificacion" *ngFor="let t of tipoIdentificacion" >{{t.nombre}}</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6 align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Número de Identificación</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="0999999999"
+                            name="numeroIdentificacion"  #numeroIdentificacion="ngModel"  [(ngModel)]="data.numeroIdentificacion">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Sexo</label>
+                            <select class="custom-select" name="secuenciaGenero"  #secuenciaGenero="ngModel"  [(ngModel)]="data.secuenciaGenero" ngControl="g.secuenciaGenero">
+                                <option selected>Seleccionar</option>
+                                <option [value]="g.secuenciaGenero" *ngFor="let g of genero" >{{g.descripcionGenero}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Primer Nombre</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Primer Nombre"  
+                            name="primerNombre"  #primerNombre="ngModel"  [(ngModel)]="data.primerNombre" (change)="consultarUsuarioDisponible()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Segundo Nombre"
+                            name="segundoNombre"  #segundoNombre="ngModel"  [(ngModel)]="data.segundoNombre" (change)="consultarUsuarioDisponible()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Primer Apellido</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Primer Apellido"
+                            name="primerApellido"  #primerApellido="ngModel"  [(ngModel)]="data.primerApellido" (change)="consultarUsuarioDisponible()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Segundo Apellido</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Segundo Apellido"
+                            name="segundoApellido"  #segundoApellido="ngModel"  [(ngModel)]="data.segundoApellido" (change)="consultarUsuarioDisponible()">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="formGroupExampleInput" placeholder="Fecha de nacimiento"
+                            name="fechaNacimiento"  #fechaNacimiento="ngModel"  [(ngModel)]="data.fechaNacimiento" (change)="consultarEdad()">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Edad</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="15 años"
+                            name="edad"  #edad="ngModel"  [(ngModel)]="data.edad" disabled>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Usuario</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="TPRUEBA"
+                            name="usuario"  #usuario="ngModel"  [(ngModel)]="data.usuario" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center  mt-2">
+        <div class="card col-9">
+            <h2 class="card-title pl-4 pt-4">Datos Contacto</h2>
+            <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Email</label>
+                            <input type="email" class="form-control" id="formGroupExampleInput" placeholder="prueba@prueba.com"
+                            name="email"  #email="ngModel"  [(ngModel)]="data.email">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Teléfono Móvil</label>
+                            <input type="number" class="form-control" id="formGroupExampleInput" placeholder="0999999999"
+                            name="telefonoMovil"  #email="ngModel"  [(ngModel)]="data.telefonoMovil">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Teléfono Fijo</label>
+                            <input type="number" class="form-control" id="formGroupExampleInput" placeholder="0400000099"
+                            name="telefonoFijo"  #email="ngModel"  [(ngModel)]="data.telefonoFijo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center  mt-2">
+        <div class="card col-9">
+            <h2 class="card-title pl-4 pt-4">Datos Residencia</h2>
+            <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-sm-3 col-6 align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Pais</label>
+                            <select class="custom-select" (change)="getProvincia()" name="secuenciaPais"  #secuenciaPais="ngModel"  [(ngModel)]="data.secuenciaPais" ngControl="d.secuenciaPais">
+                                <option selected="" [ngValue]=0>Seleccionar</option>
+                                <option  *ngFor="let d of pais" [ngValue]="d.secuenciaPais">{{d.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6 align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Provincia</label>
+                            <select class="custom-select" (change)="getCiudad()" name="secuenciaProvincia"  #secuenciaProvincia="ngModel"  [(ngModel)]="data.secuenciaProvincia" ngControl="p.secuenciaProvincia">
+                                <option selected="" [ngValue]=0>Seleccionar</option>
+                                <option  *ngFor="let p of provincia" [ngValue]="p.secuenciaProvincia">{{p.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Ciudad</label>
+                            <select class="custom-select" name="secuenciaCiudad"  #secuenciaCiudad="ngModel"  [(ngModel)]="data.secuenciaCiudad" ngControl="p.secuenciaProvincia">
+                                <option selected="" [ngValue]=0>Seleccionar</option>
+                                <option  *ngFor="let d of ciudad" [ngValue]="d.secuenciaCiudad">{{d.nombre}}</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-6  align-self-end">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Dirección</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Juan León Mera Nro. 19-36 y Av. Patria"
+                            name="direccion"  #email="ngModel"  [(ngModel)]="data.direccion">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-2 mb-2">
+        <div class="col-9 text-right m-0 p-0">
+            <button  type="button" class="btn btn-primary w-25" (click)="crearOActualizarUsuario()">Guardar</button>
+        </div>
+    </div>
+</div>
+
